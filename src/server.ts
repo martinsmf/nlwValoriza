@@ -2,6 +2,7 @@
 import 'reflect-metadata'
 import express, { Request, Response, NextFunction } from 'express'
 import 'express-async-errors'
+import { Err } from './err'
 
 //Rotas
 import { router } from './routes'
@@ -15,9 +16,9 @@ app.use(express.json())
 
 app.use(router)
 
-app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
-  if (err instanceof Error) {
-    return response.status(401).json({
+app.use((err: Err, request: Request, response: Response, next: NextFunction) => {
+  if (err instanceof Err) {
+    return response.status(err.code).json({
       error: err.message
     })
   }
