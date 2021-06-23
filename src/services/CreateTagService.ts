@@ -10,12 +10,12 @@ class CreateTagService {
     //   throw Error('Incorrect name!')
 
     if (!name)
-      throw new Err(401, 'Incorrect name!')
+      throw new Err(400, 'Incorrect name!')
 
     const tagAlreadyExists = await tagsRepositories.findOne({ name })
 
     if (tagAlreadyExists)
-      throw new Err(401, 'Tag already exists')
+      throw new Err(400, 'Tag already exists')
 
     const tag = tagsRepositories.create({
       name,
