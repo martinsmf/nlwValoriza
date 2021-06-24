@@ -10,7 +10,9 @@ class User {
   @Column()
   email: string
   @Column()
-  admin: boolean
+  admin?: boolean
+  @Column()
+  password: string
   @CreateDateColumn()
   created_at: Date
   @UpdateDateColumn()
